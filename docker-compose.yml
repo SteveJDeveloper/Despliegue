@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  apisip:
+    depends_on:
+      - db
+    restart: always
+    image: node-apisip
+    ports:
+      - 5000:5000
+    environment:
+      MYSQL_HOST: db
+  websip:
+    restart: always
+    image: node-websip
+    ports:
+      - 2000:2000
+  apimascotas:
+    depends_on:
+    - db
+    restart: always
+    image: node-apimascotas
+    ports:
+      - 4000:4000
+    environment:
+      MYSQL_HOST: db  
+  webmascotas:
+    restart: always
+    image: react-webmascotas
+    ports:
+      - 3000:3000
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports: 
+      - "8080:80"
+    environment: 
+      PMA_HOST: db:3306
+      MYSQL_ROOT_PASSWORD: root
+volumes:
+  db:
