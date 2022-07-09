@@ -23,14 +23,15 @@ ufw allow 5000
 ufw allow 2000
 ufw allow 8080
 
-git clone https://github.com/SteveJDeveloper/SIP.git
-
 # Comandos para Docker #
 
 docker build -t node-apisip .
 docker build -t node-websip .
 
 docker-compose up -d
+
+lovedogs-jonathanescobar        54.164.224.159
+sistemapases-jonathanescobar    23.20.72.4
 
 
 

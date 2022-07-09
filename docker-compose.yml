@@ -10,20 +10,6 @@ services:
       - db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-  apisip:
-    depends_on:
-      - db
-    restart: always
-    image: node-apisip
-    ports:
-      - 5000:5000
-    environment:
-      MYSQL_HOST: db
-  websip:
-    restart: always
-    image: node-websip
-    ports:
-      - 2000:2000
   apimascotas:
     depends_on:
     - db
